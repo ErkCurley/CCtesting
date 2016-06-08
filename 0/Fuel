@@ -1,15 +1,17 @@
 function Fuel()
-turtle.select(12)
-turtle.placeUp()
-turtle.select(16)
-turtle.suckUp()
-turtle.refuel()
-turtle.select(12)
-turtle.digUp()
+if turtle.getFuelLevel() < 500 then
+  turtle.select(12)
+  turtle.placeUp()
+  turtle.select(16)
+  turtle.suckUp()
+  turtle.refuel()
+  turtle.select(12)
+  turtle.digUp()
+else
+  print('No Refuel needed')
 end 
-
-if turtle.getFuelLevel() < 2000 then
-  Fuel()
-  print("Fueled")
 end
+Fuel()
+print("Fueled")
+print(turtle.getFuelLevel())
 
