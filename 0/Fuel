@@ -1,0 +1,15 @@
+function Fuel()
+turtle.select(12)
+turtle.placeUp()
+turtle.select(16)
+turtle.suckUp()
+turtle.refuel()
+turtle.select(12)
+turtle.digUp()
+end 
+
+if turtle.getFuelLevel() < 2000 then
+  Fuel()
+  print("Fueled")
+end
+
