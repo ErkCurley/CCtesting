@@ -1,0 +1,31 @@
+function forward(num)
+  for i=0,num do 
+    turtle.forward()
+  end
+end
+
+function back(num)
+  turtle.turnLeft()
+  turtle.turnLeft()
+  for i=0,num do 
+    turtle.forward()
+  end
+end
+
+function right(num)
+  turtle.turnRight()
+  for i=0,num do 
+    turtle.forward()
+  end
+end
+function left(num)
+  turtle.turnLeft()
+  for i=0,num do 
+    turtle.forward()
+  end
+end
+forward(12)
+back(10)
+right(10)
+left(10)
+
