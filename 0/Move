@@ -1,3 +1,6 @@
+local modem = peripheral.wrap("left")
+
+
 function forward(num)
   for i=0,num do 
     turtle.forward()
@@ -24,8 +27,7 @@ function left(num)
     turtle.forward()
   end
 end
-forward(12)
-back(10)
-right(10)
-left(10)
 
+local x, y, z = gps.locate(5)
+
+print(x)
