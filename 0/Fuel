@@ -7,11 +7,8 @@ if turtle.getFuelLevel() < 500 then
   turtle.refuel()
   turtle.select(12)
   turtle.digUp()
-else
-  print('No Refuel needed')
 end 
 end
 Fuel()
-print("Fueled")
-print(turtle.getFuelLevel())
+
 

@@ -1,6 +1,10 @@
 local modem = peripheral.wrap("left")
 
 function forward(num)
+  if not turtle.detectUp() then
+    shell.run("Fuel")
+  end  
+      
   for i=1,num do 
     turtle.forward()
   end
@@ -10,20 +14,20 @@ function back(num)
   turtle.turnLeft()
   turtle.turnLeft()
   for i=1,num do 
-    turtle.forward()
+    forward(1)
   end
 end
 
 function right(num)
   turtle.turnRight()
   for i=1,num do 
-    turtle.forward()
+    forward(1)
   end
 end
 function left(num)
   turtle.turnLeft()
   for i=1,num do 
-    turtle.forward()
+    forward(1)
   end
 end
 function round()
@@ -46,14 +50,14 @@ end
 
 function move(a,b,c)
   face = face()
-  local x, y, z = gps.locate()
-  if(a>x)then
+  local startX, startY, startZ = gps.locate()
+  if(a>startX)then
    
   end
-  if(b>y)then
+  if(b>startY)then
    
   end
-  if(c>z)then
+  if(c>startZ)then
    
   end
   print("Face = "..face)
@@ -84,5 +88,4 @@ function face()
   end
   return "None"
 end
-
 turn(face(),1)
