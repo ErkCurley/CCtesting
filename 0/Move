@@ -1,8 +1,7 @@
 local modem = peripheral.wrap("left")
 
-
 function forward(num)
-  for i=0,num do 
+  for i=1,num do 
     turtle.forward()
   end
 end
@@ -10,24 +9,80 @@ end
 function back(num)
   turtle.turnLeft()
   turtle.turnLeft()
-  for i=0,num do 
+  for i=1,num do 
     turtle.forward()
   end
 end
 
 function right(num)
   turtle.turnRight()
-  for i=0,num do 
+  for i=1,num do 
     turtle.forward()
   end
 end
 function left(num)
   turtle.turnLeft()
-  for i=0,num do 
+  for i=1,num do 
     turtle.forward()
   end
 end
+function round()
+  turtle.turnLeft()
+  turtle.turnLeft()
+end
+function turn(face,want)
+  if face == want then
 
-local x, y, z = gps.locate(5)
+  else
+    while face ~= want do 
+      turtle.turnRight()
+      face = face + 1
+      if face == 5 then
+        face = face - 4
+      end
+    end
+  end
+end
 
-print(x)
+function move(a,b,c)
+  face = face()
+  local x, y, z = gps.locate()
+  if(a>x)then
+   
+  end
+  if(b>y)then
+   
+  end
+  if(c>z)then
+   
+  end
+  print("Face = "..face)
+end
+
+function face()
+  local x,y,z = gps.locate()
+  forward(1)
+  local X,Y,Z = gps.locate()
+  round()
+  forward(1)
+  round()
+  if(X>x)then
+    print("Facing East")
+    return 2 --"East"
+  end
+  if(X<x)then
+    print("Facing West")
+    return 4 --"West"
+  end
+  if(Z>z)then
+    print("Facing South")
+    return 3 --"South"
+  end
+  if(Z<z)then
+    print("Facing North")
+    return 1 --"North"
+  end
+  return "None"
+end
+
+turn(face(),1)
