@@ -35,6 +35,11 @@ function round()
   turtle.turnLeft()
 end
 function turn(face,want)
+  if want == "North" then want = 1 end  
+  if want == "East"  then want = 2 end
+  if want == "South" then want = 3 end
+  if want == "West"  then want = 4 end
+  
   if face == want then
 
   else
@@ -88,4 +93,5 @@ function face()
   end
   return "None"
 end
-turn(face(),1)
+
+turn(face(),"North")
