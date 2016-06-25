@@ -1,15 +1,34 @@
 local modem = peripheral.wrap("left")
+local goTo = {...}
+
+print(goTo[1])
+print(goTo[2])
+print(goTo[3])
 
 function forward(num)
   if not turtle.detectUp() then
     shell.run("Fuel")
   end  
-      
   for i=1,num do 
     turtle.forward()
   end
 end
-
+function up()
+  if not turtle.detectUp() then
+    shell.run("Fuel")
+  end
+  for i=1,num do
+    turtle.up()
+  end
+end
+function down()
+  if not turtle.detectUp() then
+    shell.run("Fuel")
+  end
+  for i=1,num do
+    turtle.down()
+  end
+end
 function back(num)
   turtle.turnLeft()
   turtle.turnLeft()
@@ -54,18 +73,52 @@ function turn(face,want)
 end
 
 function move(a,b,c)
+  a = tonumber(a)
+  b = tonumber(b)
+  c = tonumber(c)
   face = face()
   local startX, startY, startZ = gps.locate()
+  --print(startX.." "..startY.." "..startZ)
+  --print(a.." "..b.." "..c)
   if(a>startX)then
-   
+    turn(face,"East")
+    face = 2
+    --print("I should go Forward".. startX - a)    
+    num = startX - a
+    if num < 0 then num = num * -1 end
+    forward(num)
+  else
+    turn(face,"West")
+    face = 4
+    num = startX -a
+    if num < 0 then num = num + -1 end
+    forward(num)
   end
+
   if(b>startY)then
-   
+    num = b - startY
+    up(num)  
+  else
+    num = startY - b
+    down(num)
   end
+
+  
   if(c>startZ)then
-   
+    turn(face,"South")
+    face = 3
+    --print("I should go Forward".. startZ - c)
+    num = startZ - c
+    if num < 0 then num =  num * -1 end
+    forward(num)
+  else  
+    turn(face,"North")
+    face = 1
+    num = startZ - c
+    if num < 0 then num = num * -1 end
+    forward(num)
   end
-  print("Face = "..face)
+  --print("Face = " .. face)
 end
 
 function face()
@@ -76,22 +129,18 @@ function face()
   forward(1)
   round()
   if(X>x)then
-    print("Facing East")
     return 2 --"East"
   end
   if(X<x)then
-    print("Facing West")
     return 4 --"West"
   end
   if(Z>z)then
-    print("Facing South")
     return 3 --"South"
   end
   if(Z<z)then
-    print("Facing North")
     return 1 --"North"
   end
   return "None"
 end
-
-turn(face(),"North")
+--X,Y,Z
+move(goTo[1],goTo[2],goTo[3])
