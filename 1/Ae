@@ -1,0 +1,6 @@
+local side = "left" --# or left up down front back
+p = peripheral.wrap(side)
+
+for i,v in ipairs(p.getAvailableItems()) do 
+  print(v)
+end 

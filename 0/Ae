@@ -1,0 +1,6 @@
+local side = "left" --# or left up down front back
+peripheral.wrap(side)
+local i, v
+for i,v in ipairs(p.getMethods(side)) do
+   print(i..". "..v)
+end

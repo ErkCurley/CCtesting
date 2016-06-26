@@ -1,0 +1,148 @@
+--[[
+HPWebcamAble presents...
+Get Methods
+
+=== Description ====
+Dispalys the functions of a periperal
+
+Example: Monitor, Turtle, Printer...
+
+
+==== Installation and Use ====
+Pastebin Code: sKLqTGrM
+
+To download a file from pastebin:
+pastebin get <code> <name>
+
+Place computer next to the block you want the methods of
+Run the program with the side of the peripheral as an argument
+
+This displays the functions of
+a peripheral using peirpheral.getMethods(side)
+
+
+==== Update History ====
+The pastebin will always have the most recent version
+
+|1.1|  <-- This program
+  -You can now scroll through the pages with the arrow keys
+  -You can use it on the regular (non color) computer now
+  -Cleaned up code
+|1.0|
+  -Release
+]]
+
+args = {...}
+
+--Variables--
+local pFunctions
+local w,h = term.getSize()
+
+--Functions--
+function tc(...)
+  if term.isColor() then
+    term.setTextColor(...)
+  end
+end
+
+function isSide(name)
+  local sides = rs.getSides()
+  for i = 1, #sides do
+    if name == sides[i] then
+      return true
+    end
+  end
+  return false
+end
+
+
+--Program--
+if #args == 0 then
+  print("Usages:")
+  print(shell.getRunningProgram().." <side>")
+  return
+elseif not isSide(args[1]) then
+  printError(args[1].." isn't a valid side")
+  return
+elseif not peripheral.isPresent(args[1]) then
+  printError("There is no peripheral on that side")
+  return
+end
+
+term.setCursorPos(1,1)
+term.clear()
+tc(colors.yellow)
+local heading = "Functions for '"..peripheral.getType(args[1]).."' (Located on the "..args[1]..")"
+local hLines = print(heading)+1
+tc(colors.white)
+
+local pFunctions = peripheral.getMethods(args[1])
+local pages = math.ceil(#pFunctions/(h-hLines))
+local fPerPage = math.floor(#pFunctions/pages)
+local cPage = 1
+
+if pages > 1 then
+  while true do
+    for i = 1, h-hLines do
+      local curF = i+fPerPage*(cPage-1)
+      if curF > #pFunctions then break end
+      term.setCursorPos(1,hLines+i-1)
+      term.write(pFunctions[curF])
+    end
+    term.setCursorPos(1,h)
+    if cPage == 1 then
+      tc(colors.yellow)
+      term.write("Use arrow keys to navagate < Back / Forward >")
+      tc(colors.white)
+    elseif cPage < pages then
+      tc(colors.yellow)
+      term.write("< Back / Forward >")
+      tc(colors.white)
+    else
+      tc(colors.yellow)
+      term.write("< Back / Exit >")
+      tc(colors.white)
+    end
+    local continue = true
+    while continue do
+      local event,key = os.pullEvent("key")
+      if key == keys.right then
+        if cPage < pages then
+          cPage = cPage+1
+          break
+        else
+          term.setCursorPos(1,h)
+          tc(colors.yellow)
+          term.write("Press > (Right) to exit, or < (Left) to cancel")
+          tc(colors.white)
+          while true do
+            local event1,key1 = os.pullEvent("key")
+            if key1 == keys.right then
+              term.setCursorPos(1,h)
+              term.clearLine()
+              term.setCursorPos(1,math.ceil(#pFunctions/pages)+hLines)
+              error()
+            elseif key1 == keys.left then
+              continue = false
+              break
+            end
+          end
+        end
+      elseif key == keys.left then
+        if cPage > 1 then
+          cPage = cPage-1
+          break
+        end
+      end
+    end
+    term.setCursorPos(1,1)
+    term.clear()
+    tc(colors.yellow)
+    print(heading)
+    tc(colors.white)
+  end
+else
+  for a,b in pairs(pFunctions) do
+    print(b)
+  end
+end
