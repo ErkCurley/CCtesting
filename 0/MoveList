@@ -1,0 +1,8 @@
+h = fs.open("FACE","r")
+face = h.readLine()
+h.close()
+shell.run("Move -450 56 -400")
+h = fs.open("FACE","r")
+face = h.readLine()
+h.close()
+shell.run("Move -460 56 -412 "..face)
