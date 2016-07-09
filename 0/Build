@@ -1,0 +1,52 @@
+local modem = peripheral.wrap("left")
+local Args = {...}
+
+if(Args[3] ~= nil)then
+  run = true
+end
+
+for i = 1,4 do
+  if(Args[i] == nil) then
+    Args[i] = " "
+  end
+end
+
+
+function Cube()
+
+
+end
+
+function Square()
+
+
+end
+
+function Line()
+
+
+end
+
+function PlaceUp()
+
+
+
+end
+
+function PlaceDown()
+
+
+
+
+end
+
+if(run == true)then
+  shell.run("Move "..Args[1].." "..Args[2].." "..Args[3].." "..Args[4]) 
+end
+
+if(Args[5] ~= nil)then
+  if(Args[5] == "Cube")then
+    Cube()
+  end
+end
+
