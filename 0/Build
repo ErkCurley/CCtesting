@@ -62,3 +62,19 @@ if(Args[5] ~= nil)then
   end
 end
 
+if(Args[6] ~= nil)then
+  if(Args[6] == "North")then
+    Cube()
+  elseif(Args[6] == "South")then
+    Cube()
+  end
+end
+
+if(Args[7] ~= nil)then
+  if(Args[7] == "East")then
+    Cube()
+  elseif(Args[7] == "West")then
+    Cube()
+  end
+end
+
