@@ -1,6 +1,6 @@
 local modem = peripheral.wrap("left")
 local goTo = {...}
-log = fs.open("Logging/LogPos","a") 
+log = fs.open("Logging/LogPos","w") 
 
 function forward(num)
   if not turtle.detectUp() then
