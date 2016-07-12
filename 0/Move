@@ -84,31 +84,30 @@ function move(a,b,c)
   face = face()
   local startX, startY, startZ = gps.locate()
   
-  print(a.." "..startX)
-  
   if(a>startX)then
     turn(face,"East")
     face = 2
-    --print("I should go Forward".. startX - a)    
     num = startX - a
     if num < 0 then num = num * -1 end
-    print(num)
     forward(num)
   else
-    turn(face,"West")
-    face = 4
-    num = startX -a
-    if num < 0 then num = num + -1 end
-    print(num)
-    forward(num)
+    if(a ~== startX)then
+      turn(face,"West")
+      face = 4
+      num = startX -a
+      if num < 0 then num = num + -1 end
+      forward(num)
+    end
   end
 
   if(b>startY)then
     num = b - startY
     up(num)  
   else
-    num = startY - b
-    down(num)
+    if(b~==startY)then
+      num = startY - b
+      down(num)
+    end
   end
 
   
@@ -119,12 +118,14 @@ function move(a,b,c)
     num = startZ - c
     if num < 0 then num =  num * -1 end
     forward(num)
-  else  
-    turn(face,"North")
-    face = 1
-    num = startZ - c
-    if num < 0 then num = num * -1 end
-    forward(num)
+  else
+    if(c ~== startZ)then
+      turn(face,"North")
+      face = 1
+      num = startZ - c
+      if num < 0 then num = num * -1 end
+      forward(num)
+    end
   end
   --print("Face = " .. face)
 end
