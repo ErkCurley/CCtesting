@@ -1,7 +1,7 @@
 local modem = peripheral.wrap("left")
 local goTo = {...}
-log = fs.open("Logging/LogPos","w") 
-
+log = fs.open("LogPos","w") 
+  
 function forward(num)
   if not turtle.detectUp() then
     shell.run("Fuel")
@@ -12,7 +12,7 @@ function forward(num)
     
   end
   local X, Y, Z = gps.locate()
-  log.write(X.." "..Y.." "..Z)
+  log.writeLine(X.."  "..Y.." "..Z.." Forward"..num)
 end
 function up()
   if not turtle.detectUp() then
@@ -22,7 +22,7 @@ function up()
     turtle.up()
   end
   local X, Y, Z = gps.locate()
-  log.writeLine(X.." "..Y.." "..Z)
+  log.writeLine(X.."  "..Y.." "..Z.." Up")
 end
 function down()
   if not turtle.detectUp() then
@@ -32,7 +32,7 @@ function down()
     turtle.down()
   end
   local X, Y, Z = gps.locate()
-  log.writeLine(X.." "..Y.." "..Z)
+  log.writeLine(X.."  "..Y.." "..Z.." Down")
 end
 function back(num)
   turtle.turnLeft()
@@ -84,18 +84,22 @@ function move(a,b,c)
   face = face()
   local startX, startY, startZ = gps.locate()
   
+  print(a.." "..startX)
+  
   if(a>startX)then
     turn(face,"East")
     face = 2
     --print("I should go Forward".. startX - a)    
     num = startX - a
     if num < 0 then num = num * -1 end
+    print(num)
     forward(num)
   else
     turn(face,"West")
     face = 4
     num = startX -a
     if num < 0 then num = num + -1 end
+    print(num)
     forward(num)
   end
 
@@ -148,3 +152,4 @@ function face()
 end
 --X,Y,Z
 move(goTo[1],goTo[2],goTo[3])
+log.close()
