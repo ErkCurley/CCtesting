@@ -91,7 +91,7 @@ function move(a,b,c)
     if num < 0 then num = num * -1 end
     forward(num)
   else
-    if(a ~== startX)then
+    if(a ~= startX)then
       turn(face,"West")
       face = 4
       num = startX -a
@@ -104,7 +104,7 @@ function move(a,b,c)
     num = b - startY
     up(num)  
   else
-    if(b~==startY)then
+    if(b ~= startY)then
       num = startY - b
       down(num)
     end
@@ -119,7 +119,7 @@ function move(a,b,c)
     if num < 0 then num =  num * -1 end
     forward(num)
   else
-    if(c ~== startZ)then
+    if(c ~= startZ)then
       turn(face,"North")
       face = 1
       num = startZ - c
