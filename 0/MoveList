@@ -1,3 +1,8 @@
+
+--This file is still being used to learn how to pass face parameters
+--Pretty sure that face parameters work correctly
+
+
 h = fs.open("FACE","r")
 face = h.readLine()
 h.close()
