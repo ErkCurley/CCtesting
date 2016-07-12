@@ -22,7 +22,7 @@ function up()
     turtle.up()
   end
   local X, Y, Z = gps.locate()
-  log.write(X.." "..Y.." "..Z)
+  log.writeLine(X.." "..Y.." "..Z)
 end
 function down()
   if not turtle.detectUp() then
@@ -32,7 +32,7 @@ function down()
     turtle.down()
   end
   local X, Y, Z = gps.locate()
-  log.write(X.." "..Y.." "..Z)
+  log.writeLine(X.." "..Y.." "..Z)
 end
 function back(num)
   turtle.turnLeft()
