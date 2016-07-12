@@ -1,0 +1,80 @@
+local modem = peripheral.wrap("left")
+local Args = {...}
+
+if(Args[3] ~= nil)then
+  run = true
+end
+
+for i = 1,4 do
+  if(Args[i] == nil) then
+    Args[i] = " "
+  end
+end
+
+function Fill()
+  turtle.select(7)
+  if(turtle.getItemCount() < 16)then
+    turtle.select(8)
+    turtle.placeUp()
+    turtle.select(7)
+    turtle.suckUp()
+    turtle.select(8)
+    turtle.digUp()
+    turtle.select(1)
+  end
+  turtle.select(1)
+end
+
+function Cube(L,W,H)
+  Fill()
+
+end
+
+function Square(L,W)
+  Fill()
+
+end
+
+function Line(L)
+  Fill()
+  if(L < 64)then
+    for i=0,L do 
+      PlaceDown()
+      turtle.forward()
+    end
+  end
+end
+
+function PlaceDown()
+  Fill()
+  turtle.select(7)
+  turtle.placeUp()
+  turtle.select(1)
+end
+
+if(run == true)then
+  shell.run("Move "..Args[1].." "..Args[2].." "..Args[3].." "..Args[4])
+end
+
+if(Args[5] ~= nil)then
+  if(Args[5] == "Cube")then
+    Cube()
+  end
+end
+
+if(Args[6] ~= nil)then
+  if(Args[6] == "North")then
+    Cube()
+  elseif(Args[6] == "South")then
+    Cube()
+  end
+end
+
+if(Args[7] ~= nil)then
+  if(Args[7] == "East")then
+    Cube()
+  elseif(Args[7] == "West")then
+    Cube()
+  end
+end
+

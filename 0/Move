@@ -1,6 +1,8 @@
 local modem = peripheral.wrap("left")
 local goTo = {...}
-log = fs.open("LogPos","w") 
+h = fs.open("Face","a")
+log = fs.open("LogPos","w")
+ 
   
 function forward(num)
   if not turtle.detectUp() then
@@ -14,6 +16,7 @@ function forward(num)
   local X, Y, Z = gps.locate()
   log.writeLine(X.."  "..Y.." "..Z.." Forward"..num)
 end
+
 function up()
   if not turtle.detectUp() then
     shell.run("Fuel")
@@ -74,14 +77,15 @@ function turn(face,want)
         face = face - 4
       end
     end
-  end
+  end 
 end
 
-function move(a,b,c)
+function move(a,b,c,f)
   a = tonumber(a)
   b = tonumber(b)
   c = tonumber(c)
-  face = face()
+  face = tonumber(f)
+  
   local startX, startY, startZ = gps.locate()
   
   if(a>startX)then
@@ -99,7 +103,7 @@ function move(a,b,c)
       forward(num)
     end
   end
-
+   
   if(b>startY)then
     num = b - startY
     up(num)  
@@ -131,12 +135,14 @@ function move(a,b,c)
 end
 
 function face()
+  print("face check")
   local x,y,z = gps.locate()
   forward(1)
   local X,Y,Z = gps.locate()
   round()
   forward(1)
   round()
+  
   if(X>x)then
     return 2 --"East"
   end
@@ -152,5 +158,18 @@ function face()
   return "None"
 end
 --X,Y,Z
+
+if(goTo[4] == nil)then
+  face = face()
+else
+  face = goTo[4]
+end
+
+move(goTo[1],goTo[2],goTo[3],face)
+h.writeLine(face)
+h.close()
+return face
+
 move(goTo[1],goTo[2],goTo[3])
 log.close()
+
