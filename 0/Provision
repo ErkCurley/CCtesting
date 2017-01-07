@@ -1,3 +1,4 @@
 shell.run("pastebin get 2QpdPw5s Fuel")
 shell.run("pastebin get KHNAXpTt Move")
 shell.run("pastebin get UhmDMyGr Tree")
+shell.run("pastebin get NFZMcNwe ReactorDisplay")
