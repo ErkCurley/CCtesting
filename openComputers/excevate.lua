@@ -1,5 +1,5 @@
 --Creator: Erkcurley
---test
+
 --New Excavate Program - Checks power level and returns home when low.
 
 local component = require("component")
