@@ -66,10 +66,10 @@ local function Turn(n)
 end
 
 
-local function Dig(Direction = 0)
+local function Dig(direction)
 	if direction == "up" then
 		robot.swingUp()
-	else if direction == "down" then 
+	elseif direction == "down" then 
 		robot.swingDown()
 	else
 		robot.swing()
