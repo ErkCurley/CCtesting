@@ -13,6 +13,7 @@ local myY = 0
 local myZ = 0
 local face = 1
 local sides = 0
+local blocksMined = 0
 
 local function Move(x,y,z)
 	if x < myX then
@@ -88,14 +89,30 @@ local function Excavate(size)
 	end
 end
 
+local function Home()
+	
+end
+
+local function CheckRefuel()
+
+end
+
 local function Refuel()
 
+end
+
+local function Empty()
+	while i < 15 do
+		robot.select(i)
+		--Add Block Stack To List
+		robot.drop()
+	end
 end
 
 local function CheckInventory()
 	
 end
 
-local function Home()
-	
+local function PostBlocks()
+	--Loop through list and post all the data in JSON
 end
