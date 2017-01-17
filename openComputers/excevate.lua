@@ -65,8 +65,27 @@ local function Turn(n)
 end
 
 
-local function Dig()
-	
+local function Dig(Direction = 0)
+	if direction == "up" then
+		robot.swingUp()
+	else if direction == "down" then 
+		robot.swingDown()
+	else
+		robot.swing()
+	end
+end
+
+local function Excavate(size)
+	while n < size do 
+		while m < size do
+			Dig()
+			robot.forward()
+			m = m + 1
+			Dig("up")
+			Dig("down")
+		end
+		n = n + 1
+	end
 end
 
 local function Refuel()
