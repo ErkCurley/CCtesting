@@ -90,15 +90,24 @@ local function Excavate(size)
 end
 
 local function Home()
-	
+	Move(0,0,0)
 end
 
 local function CheckRefuel()
+	energy = robot.energy()
+	if energy > 1000 then
 
+	else
+		Home()
+		Refuel()
+	end
 end
 
 local function Refuel()
-
+	while energy < 18000 do
+		os.sleep()
+		energy = robot.energy()
+	end
 end
 
 local function Empty()
