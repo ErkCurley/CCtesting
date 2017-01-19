@@ -16,6 +16,7 @@ directions = {"North","East","South","West"}
 function forward(number)
 
 	while distance < number do
+		checkInv()
 		robot.swing()
 		robot.forward()
 		dig()
@@ -53,18 +54,47 @@ function dig()
 
 end
 
+function dumpInv()
+	local i = 1
+	while i <= 16 do
+		robot.select(i)
+		robot.drop()
+		i = i + 1
+	end
+end
+
+function checkPower()
+	-- if power is lower than 10% go home
+end
+
+function refuel()
+	--get the energy level
+	--stay until the energy level is full
+end
+
 function home()
-	-- body
+	local i = 0
+	turn(2)
+	while i < distance do
+		robot.forward()
+		i = i + 1
+	end
+	distance = 0
+	dumpInv()
+	refuel()
+	turn(0)
 end
 
 function checkInv()
 	robot.select(16)
-	if robot.getItemCount() > 0 then
+	local count = robot.count()
+	robot.select(1)
+	if count > 0 then
 
 		home()
 
 	end
-
 end
 
 forward(16)
+home()
