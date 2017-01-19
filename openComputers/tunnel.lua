@@ -6,37 +6,64 @@ local robot = require("robot")
 local shell = require("shell")
 local sides = require("sides")
 
-local distance = 1
-local blocksMined = 0
+distance = 0
+facing = 0
+blocksMined = 0
+directionFacing = "North"
 
-local function forward(number)
+directions = {"North","East","South","West"}
 
-	while number < distance do
+function forward(number)
+
+	while distance < number do
 		robot.swing()
 		robot.forward()
 		dig()
-		robot.turnLeft()
+		turn(3)
 		robot.swing()
 		robot.forward()
 		dig()
-		robot.turnRight()
-		robot.turnRight()
+		turn(1)
 		robot.forward()
 		robot.swing()
 		robot.forward()
 		dig()
-		robot.turnLeft()
-		robot.turnLeft()
+		turn(3)
 		robot.forward()
-		robot.turnRight()
+		turn(0)
 		distance = distance + 1
+
 	end
 end
 
-local function dig()
+function turn(side)
+	while  facing ~= side do
+		robot.turnLeft()
+		facing = facing - 1
+		if facing < 0 then
+			facing = 3
+		end
+	end 
+end
+
+function dig()
 
 	robot.swingUp()
 	robot.swingDown()
+
+end
+
+function home()
+	-- body
+end
+
+function checkInv()
+	robot.select(16)
+	if robot.getItemCount() > 0 then
+
+		home()
+
+	end
 
 end
 
