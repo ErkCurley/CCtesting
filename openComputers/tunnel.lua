@@ -85,6 +85,7 @@ function dumpInv()
 		robot.drop()
 		i = i + 1
 	end
+	robot.select(0)
 end
 
 function checkPower()
