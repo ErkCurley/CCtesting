@@ -82,10 +82,11 @@ function dumpInv()
 	local i = 1
 	while i <= 16 do
 		robot.select(i)
+		io.write(i)
 		robot.drop()
 		i = i + 1
 	end
-	robot.select(0)
+	robot.select(1)
 end
 
 function checkPower()
@@ -96,6 +97,7 @@ end
 
 function refuel()
 	while computer.energy() < computer.maxEnergy()*.8 do
+		os.sleep(10)
 	end
 end
 
