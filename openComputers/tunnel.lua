@@ -60,6 +60,7 @@ end
 function turn(side)
 	if side == facing - 1 then
 		robot.turnLeft()
+		facing  = facing - 1
 	else
 		while  facing ~= side do
 			robot.turnRight()
