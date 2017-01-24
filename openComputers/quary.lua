@@ -1,5 +1,9 @@
 --Creator: Erkcurley
 
+--Need to make a better navigation program. maybe indicated an initial direction facing? or use navigation upgrades?
+
+
+
 local component = require("component")
 local computer = require("computer")
 local robot = require("robot")
@@ -23,16 +27,17 @@ function forward(number)
 		checkInv()
 		robot.swing()
 		robot.forward()
-    directions[1] = directions[1] + 1
+    	directions[1] = directions[1] + 1
 		dig()
 		distance = distance + 1
 	end
 end
 
+--Turn Efficiency could be improved
 function turn(side)
 	if side == facing - 1 then
 		robot.turnLeft()
-    facing = facing - 1
+    	facing = facing - 1
 	else
 		while  facing ~= side do
 			robot.turnRight()
@@ -45,35 +50,37 @@ function turn(side)
   directions[3] = facing
 end
 
+--Dig Works without problem
 function dig()
-
 	robot.swingUp()
 	robot.swingDown()
-
 end
 
+--Dump inv works without problem
 function dumpInv()
 	local i = 1
 	while i <= 16 do
 		robot.select(i)
-		io.write(i)
 		robot.drop()
 		i = i + 1
 	end
 	robot.select(1)
 end
 
+--Checking power needs to be tested
 function checkPower()
 	if computer.energy() < computer.maxEnergy()*.1 then
 		refuel()
 	end
 end
 
+--Refuel needs tested
 function refuel()
 	while computer.energy() < computer.maxEnergy()*.8 do
 		os.sleep(10)
 	end
 end
+
 
 function home()
 	local i = 0
@@ -100,6 +107,7 @@ function goBack()
 	end
 end
 
+--checkInv works properly
 function checkInv()
 	robot.select(16)
 	local count = robot.count()

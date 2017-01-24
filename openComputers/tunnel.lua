@@ -83,7 +83,7 @@ function dumpInv()
 	local i = 1
 	while i <= 16 do
 		robot.select(i)
-		io.write(i)
+		-- io.write(i)
 		robot.drop()
 		i = i + 1
 	end
@@ -103,6 +103,7 @@ function refuel()
 end
 
 function home()
+	io.write(distance)
 	local i = 0
 	turn(2)
 	while i < distance do
@@ -115,7 +116,7 @@ function home()
 	
 	if distance < length then
 		goBack(distance)
-		distance = 0
+		io.write(distance)
 	end
 end
 
