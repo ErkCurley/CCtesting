@@ -9,7 +9,11 @@ function setLocation() -- get gps using other computers
  cal = true
 end
 
-function manSetLocation(number x, number y, number z) -- manually set location
+function manSetLocation(x, y, z) -- manually set location
+ x = tonumber(x)
+ y = tonumber(y)
+ z = tonumber(z)
+ 
  xPos = x
  yPos = y
  zPos = z
