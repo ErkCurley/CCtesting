@@ -8,7 +8,7 @@ local sides = require("sides")
 local io = require("io")
 
 local xPos, yPos, zPos = nil
-face = 1 --North = 0; West = 1; South = 2; East = 3;
+local face = 1 --North = 0; West = 1; South = 2; East = 3;
 cal = false
 
 function readLocation()
@@ -17,16 +17,17 @@ function readLocation()
  for line in file:lines() do
   something = line
   local arr = explode(",",line)
-  xPos = arr[1]
-  yPos = arr[2]
-  zPos = arr[3]
-  face = arr[4]
+  xPos = tonumber(arr[1])
+  yPos = tonumber(arr[2])
+  zPos = tonumber(arr[3])
+  face = tonumber(arr[4])
+  cal = true
  end
 file:close()
  
- fs = io.open("/home/debug","w")
- fs:write(something)
- fs:close()
+ --fs = io.open("/home/debug","w")
+ --fs:write(something)
+ --fs:close()
  
 end
 
@@ -44,9 +45,10 @@ function explode(div,str) -- credit: http://richard.warburton.it
  end
 
 function writeLocation()
- local fs = io.open("/home/location","w")
- fs:write(xPos .. "," .. yPos .. "," .. zPos .. "," .. face)
- fs:close()
+   io.write(xPos .. "," .. yPos .. "," .. zPos .. "," .. face  .. "\n") 
+   local fileLocation = io.open("/home/location","w")
+   fileLocation:write(xPos .. "," .. yPos .. "," .. zPos .. "," .. face)
+   fileLocation:close()
 end
 
 function manSetLocation(x, y, z, f) -- manually set location
@@ -72,7 +74,7 @@ function getLocation() -- return the location
 end
 
 function faceLeft() -- turn left
- robot.turnLeft()
+ io.write(face .. "Before \n")
  if face == 0 then
   face = 1
  elseif face == 1 then
@@ -81,12 +83,13 @@ function faceLeft() -- turn left
   face = 3
  elseif face == 3 then
   face = 0
+  io.write(face .. "After \n")
  end
+ robot.turnLeft()
  writeLocation()
 end
 
 function faceRight() -- turn right
-  robot.turnRight()
  if face == 0 then
   face = 3
  elseif face == 1 then
@@ -96,6 +99,7 @@ function faceRight() -- turn right
  elseif face == 3 then
   face = 2
  end
+ robot.turnRight()
  writeLocation()
 end
 
@@ -115,9 +119,11 @@ function forward() -- go forward
    zPos = zPos + 1
   elseif face == 3 then
    xPos = xPos + 1
+  else
+   io.write(face .. "\n")
   end
  else
-  io.stderr:write("Not Calibrated.")
+  io.write("Not Calibrated.")
  end
  writeLocation()
 end
@@ -135,7 +141,7 @@ function back() -- go back
    xPos = xPos - 1
   end
  else
-  io.stderr:write("Not Calibrated.")
+  io.write("Not Calibrated.")
  end
  writeLocation()
 end
@@ -145,7 +151,7 @@ function up() -- go up
  if cal == true then
   yPos = yPos + 1
  else
-  io.stderr:write("Not Calibrated.")
+  io.write("Not Calibrated.")
  end
  writeLocation()
 end
@@ -155,14 +161,14 @@ function down() -- go down
  if cal == true then
   yPos = yPos - 1
  else
-  io.stderr:write("Not Calibrated.")
+  io.write("Not Calibrated.")
  end
  writeLocation()
 end
 
 function jump() -- perform a jump. useless? yup!
-  robot.up()
-  robot.down()
+  up()
+  down()
   writeLocation()
 end
 
