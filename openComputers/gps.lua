@@ -5,6 +5,7 @@ local computer = require("computer")
 local robot = require("robot")
 local shell = require("shell")
 local sides = require("sides")
+local io = require("io")
 
 local xPos, yPos, zPos = nil
 face = 1 --North = 0; West = 1; South = 2; East = 3;
@@ -20,6 +21,9 @@ function manSetLocation(x, y, z, f) -- manually set location
  yPos = y
  zPos = z
  face = f
+ fs = io.open("/home/location","w")
+ fs:write(x .. "," .. y .. "," .. z .. "," .. f)
+ fs:close()
  cal = true
 end
 
