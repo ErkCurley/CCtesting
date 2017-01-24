@@ -1,5 +1,11 @@
 -- Robot Self-tracking System created by Latias1290 for turtles. Ported to OpenComputers by Erkcurley
 
+local component = require("component")
+local computer = require("computer")
+local robot = require("robot")
+local shell = require("shell")
+local sides = require("sides")
+
 local xPos, yPos, zPos = nil
 face = 1
 cal = false
