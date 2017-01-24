@@ -11,16 +11,18 @@ local xPos, yPos, zPos = nil
 face = 1 --North = 0; West = 1; South = 2; East = 3;
 cal = false
 
-readLocation()
-
 function readLocation()
- fs = io.open("/home/location","r")
- line = fs:read()
- local arr = explode(",",line)
- xPos = arr[1]
- yPos = arr[2]
- zPos = arr[3]
- face = arr[4]
+ local fs = io.open("/home/location","r")
+ local line = fs:read("*l")
+ fs:close()
+ 
+ --local arr = explode(",",line)
+ --xPos = arr[1]
+ --yPos = arr[2]
+ ---zPos = arr[3]
+ --face = arr[4]
+ fs = io.open("/home/debug","w")
+ fs:write(line)
  fs:close()
 end
 
@@ -29,7 +31,8 @@ function explode(div,str) -- credit: http://richard.warburton.it
   if (div=='') then return false end
   local pos,arr = 0,{}
   -- for each divider found
-  for st,sp in function() return string.find(str,div,pos,true) end do
+  for st,spls
+ in function() return string.find(str,div,pos,true) end do
     table.insert(arr,string.sub(str,pos,st-1)) -- Attach chars left of current divider
     pos = sp + 1 -- Jump past current divider
   end
@@ -38,7 +41,7 @@ function explode(div,str) -- credit: http://richard.warburton.it
 end
 
 function writeLocation()
- fs = io.open("/home/location","w")
+ local fs = io.open("/home/location","w")
  fs:write(xPos .. "," .. yPos .. "," .. zPos .. "," .. face)
  fs:close()
 end
@@ -159,3 +162,5 @@ function jump() -- perform a jump. useless? yup!
   robot.down()
   writeLocation()
 end
+
+readLocation()
