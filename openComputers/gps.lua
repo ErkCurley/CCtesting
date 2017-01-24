@@ -34,7 +34,8 @@ function getLocation() -- return the location
  end
 end
 
-function turnLeft() -- turn left
+function faceLeft() -- turn left
+ robot.turnLeft()
  if face == 0 then
   face = 1
  elseif face == 1 then
@@ -46,7 +47,8 @@ function turnLeft() -- turn left
  end
 end
 
-function turnRight() -- turn right
+function faceRight() -- turn right
+  robot.turnLeft()
  if face == 0 then
   face = 3
  elseif face == 1 then
@@ -56,6 +58,11 @@ function turnRight() -- turn right
  elseif face == 3 then
   face = 2
  end
+end
+
+function faceAround()
+  faceRight()
+  faceRight()
 end
 
 function forward() -- go forward
