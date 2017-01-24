@@ -86,7 +86,7 @@ function faceLeft() -- turn left
 end
 
 function faceRight() -- turn right
-  robot.turnReft()
+  robot.turnRight()
  if face == 0 then
   face = 3
  elseif face == 1 then
