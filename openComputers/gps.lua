@@ -7,7 +7,7 @@ local shell = require("shell")
 local sides = require("sides")
 
 local xPos, yPos, zPos = nil
-face = 1
+face = 1 --North = 0; West = 1; South = 2; East = 3;
 cal = false
 
 function setLocation() -- get gps using other computers
