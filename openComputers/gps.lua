@@ -11,6 +11,12 @@ local xPos, yPos, zPos = nil
 face = 1 --North = 0; West = 1; South = 2; East = 3;
 cal = false
 
+function writeLocation()
+ fs = io.open("/home/location","w")
+ fs:write(xPos .. "," .. yPos .. "," .. zPos .. "," .. face)
+ fs:close()
+end
+
 function manSetLocation(x, y, z, f) -- manually set location
  x = tonumber(x)
  y = tonumber(y)
@@ -21,10 +27,8 @@ function manSetLocation(x, y, z, f) -- manually set location
  yPos = y
  zPos = z
  face = f
- fs = io.open("/home/location","w")
- fs:write(x .. "," .. y .. "," .. z .. "," .. f)
- fs:close()
  cal = true
+ writeLocation()
 end
 
 function getLocation() -- return the location
@@ -46,6 +50,7 @@ function faceLeft() -- turn left
  elseif face == 3 then
   face = 0
  end
+ writeLocation()
 end
 
 function faceRight() -- turn right
@@ -59,6 +64,7 @@ function faceRight() -- turn right
  elseif face == 3 then
   face = 2
  end
+ writeLocation()
 end
 
 function faceAround()
@@ -81,6 +87,7 @@ function forward() -- go forward
  else
   io.stderr:write("Not Calibrated.")
  end
+ writeLocation()
 end
 
 function back() -- go back
@@ -98,6 +105,7 @@ function back() -- go back
  else
   io.stderr:write("Not Calibrated.")
  end
+ writeLocation()
 end
 
 function up() -- go up
@@ -107,6 +115,7 @@ function up() -- go up
  else
   io.stderr:write("Not Calibrated.")
  end
+ writeLocation()
 end
 
 function down() -- go down
@@ -116,9 +125,11 @@ function down() -- go down
  else
   io.stderr:write("Not Calibrated.")
  end
+ writeLocation()
 end
 
 function jump() -- perform a jump. useless? yup!
   robot.up()
   robot.down()
+  writeLocation()
 end
