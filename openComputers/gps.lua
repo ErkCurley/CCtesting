@@ -65,7 +65,7 @@ function forward() -- go forward
    xPos = xPos + 1
   end
  else
-  print("Not Calibrated.")
+  io.stderr:write("Not Calibrated.")
  end
 end
 
@@ -82,7 +82,7 @@ function back() -- go back
    xPos = xPos - 1
   end
  else
-  print("Not Calibrated.")
+  io.stderr:write("Not Calibrated.")
  end
 end
 
@@ -91,7 +91,7 @@ function up() -- go up
  if cal == true then
   yPos = yPos + 1
  else
-  print("Not Calibrated.")
+  io.stderr:write("Not Calibrated.")
  end
 end
 
@@ -100,7 +100,7 @@ function down() -- go down
  if cal == true then
   yPos = yPos - 1
  else
-  print("Not Calibrated.")
+  io.stderr:write("Not Calibrated.")
  end
  
  function jump() -- perform a jump. useless? yup!
