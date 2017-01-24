@@ -27,7 +27,7 @@ function manSetLocation(x, y, z) -- manually set location
 end
 
 function getLocation() -- return the location
- if xPos != nil then
+ if xPos ~= nil then
   return xPos, yPos, zPos
  elseif xPos == nil then
   return nil
