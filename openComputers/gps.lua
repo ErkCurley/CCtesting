@@ -108,8 +108,9 @@ function down() -- go down
  else
   io.stderr:write("Not Calibrated.")
  end
- 
- function jump() -- perform a jump. useless? yup!
+end
+
+function jump() -- perform a jump. useless? yup!
   robot.up()
   robot.down()
- end
+end
