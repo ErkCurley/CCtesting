@@ -12,18 +12,22 @@ face = 1 --North = 0; West = 1; South = 2; East = 3;
 cal = false
 
 function readLocation()
- local fs = io.open("/home/location","r")
- local line = fs:read("*l")
+ local something = ""
+ local file = io.open("/home/location","r")
+ for line in file:lines() do
+  something = line
+  local arr = explode(",",line)
+  xPos = arr[1]
+  yPos = arr[2]
+  zPos = arr[3]
+  face = arr[4]
+ end
+file:close()
+ 
+ fs = io.open("/home/debug","w")
+ fs:write(something)
  fs:close()
  
- --local arr = explode(",",line)
- --xPos = arr[1]
- --yPos = arr[2]
- ---zPos = arr[3]
- --face = arr[4]
- fs = io.open("/home/debug","w")
- fs:write(line)
- fs:close()
 end
 
 --Lua explode function
@@ -82,7 +86,7 @@ function faceLeft() -- turn left
 end
 
 function faceRight() -- turn right
-  robot.turnLeft()
+  robot.turnReft()
  if face == 0 then
   face = 3
  elseif face == 1 then
