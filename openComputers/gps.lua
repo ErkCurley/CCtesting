@@ -10,19 +10,16 @@ local xPos, yPos, zPos = nil
 face = 1 --North = 0; West = 1; South = 2; East = 3;
 cal = false
 
-function setLocation() -- get gps using other computers
- xPos, yPos, zPos = gps.locate()
- cal = true
-end
-
-function manSetLocation(x, y, z) -- manually set location
+function manSetLocation(x, y, z, f) -- manually set location
  x = tonumber(x)
  y = tonumber(y)
  z = tonumber(z)
+ f = tonumber(f)
  
  xPos = x
  yPos = y
  zPos = z
+ face = f
  cal = true
 end
 
