@@ -7,3 +7,6 @@ local shell = require("shell")
 local sides = require("sides")
 local io = require("io")
 
+local xPos, yPos, zPos = nil
+local face = 1 --North = 0; West = 1; South = 2; East = 3;
+cal = false
