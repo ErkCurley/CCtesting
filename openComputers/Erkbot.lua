@@ -53,3 +53,16 @@ function writeLocation()
    fileLocation:close()
 end
 
+function manSetLocation(x, y, z, f) -- manually set location
+ x = tonumber(x)
+ y = tonumber(y)
+ z = tonumber(z)
+ f = tonumber(f)
+ 
+ xPos = x
+ yPos = y
+ zPos = z
+ face = f
+ cal = true
+ writeLocation()
+end
