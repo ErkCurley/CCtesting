@@ -7,3 +7,13 @@ local shell = require("shell")
 local sides = require("sides")
 local io = require("io")
 local gps = require("gps")
+
+
+
+function moveTo(x,y,z)
+
+  xPos, yPos, zPos = 
+  
+  
+  
+end
