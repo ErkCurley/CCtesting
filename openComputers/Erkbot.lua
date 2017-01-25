@@ -168,3 +168,9 @@ function down() -- go down
  writeLocation()
 end
 
+function jump() -- perform a jump. useless? yup!
+  up()
+  down()
+  writeLocation()
+end
+
