@@ -30,3 +30,6 @@ file:close()
  --fs:close()
  
 end
+
+readLocation()
+
