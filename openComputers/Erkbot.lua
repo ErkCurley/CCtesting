@@ -105,3 +105,7 @@ function faceRight() -- turn right
  writeLocation()
 end
 
+function faceAround()
+  faceRight()
+  faceRight()
+end
