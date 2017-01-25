@@ -66,3 +66,11 @@ function manSetLocation(x, y, z, f) -- manually set location
  cal = true
  writeLocation()
 end
+
+function getLocation() -- return the location
+ if xPos ~= nil then
+  return xPos, yPos, zPos
+ elseif xPos == nil then
+  return nil
+ end
+end
