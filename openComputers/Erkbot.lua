@@ -214,3 +214,12 @@ function moveTo(x,y,z)
     end
 end
 
+function face(f)
+    readLocation()
+    local fStart = getFace()
+    
+    while fStart ~= f do
+        faceRight()
+        fStart = getFace()
+    end
+end
