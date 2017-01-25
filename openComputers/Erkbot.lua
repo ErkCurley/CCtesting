@@ -130,3 +130,20 @@ function forward() -- go forward
  writeLocation()
 end
 
+function back() -- go back
+ robot.back()
+ if cal == true then
+  if face == 0 then
+   zPos = zPos + 1
+  elseif face == 1 then
+   xPos = xPos + 1
+  elseif face == 2 then
+   zPos = zPos - 1
+  elseif face == 2 then
+   xPos = xPos - 1
+  end
+ else
+  io.write("Not Calibrated.")
+ end
+ writeLocation()
+end
