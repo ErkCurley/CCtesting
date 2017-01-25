@@ -45,7 +45,7 @@ function explode(div,str) -- credit: http://richard.warburton.it
  end
 
 function writeLocation()
-   io.write(xPos .. "," .. yPos .. "," .. zPos .. "," .. face  .. "\n") 
+   io.write(xPos .. "," .. yPos .. "," .. zPos .. "," .. face  .. "\n")
    local fileLocation = io.open("/home/location","w")
    fileLocation:write(xPos .. "," .. yPos .. "," .. zPos .. "," .. face)
    fileLocation:close()
@@ -71,6 +71,10 @@ function getLocation() -- return the location
  elseif xPos == nil then
   return nil
  end
+end
+
+function getFace() -- return the location
+  return face
 end
 
 function faceLeft() -- turn left
