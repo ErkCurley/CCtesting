@@ -74,3 +74,19 @@ function getLocation() -- return the location
   return nil
  end
 end
+
+function faceLeft() -- turn left
+ io.write(face .. "Before \n")
+ if face == 0 then
+  face = 1
+ elseif face == 1 then
+  face = 2
+ elseif face == 2 then
+  face = 3
+ elseif face == 3 then
+  face = 0
+  io.write(face .. "After \n")
+ end
+ robot.turnLeft()
+ writeLocation()
+end
