@@ -5,28 +5,16 @@ local computer = require("computer")
 local robot = require("robot")
 local shell = require("shell")
 local sides = require("sides")
+local gps = require("gps")
 
 local args, options = shell.parse(...)
 
-if args[1] == nil then
-	--this doesn't work
-	local length = 16
-	
-end
-
 local length = tonumber(args[1])
 
-
 distance = 0
-facing = 0
 blocksMined = 0
-directionFacing = "North"
 
-directions = {"North","East","South","West"}
-
-
-
-function forward(number)
+function tunnel(number)
 	
 	if number == nil then
 		number = 1
@@ -39,37 +27,24 @@ function forward(number)
 	while distance < number do
 		checkInv()
 		robot.swing()
-		robot.forward()
+		forward()
 		dig()
-		turn(3)
+		faceRight()
 		robot.swing()
-		robot.forward()
+		forward()
 		dig()
-		turn(1)
-		robot.forward()
+		faceLeft()
+		faceLeft()
+		forward()
 		robot.swing()
-		robot.forward()
+		forward()
 		dig()
-		turn(3)
-		robot.forward()
-		turn(0)
+		faceRight()
+		faceRight()
+		forward()
+		faceLeft()
 		distance = distance + 1
 	end
-end
-
-function turn(side)
-	if side == facing - 1 then
-		robot.turnLeft()
-		facing  = facing - 1
-	else
-		while  facing ~= side do
-			robot.turnRight()
-			facing = facing + 1
-			if facing > 3 then
-				facing = 0
-			end
-		end
-	end 
 end
 
 function dig()
@@ -103,16 +78,18 @@ function refuel()
 end
 
 function home()
-	io.write(distance)
+	--io.write(distance)
 	local i = 0
-	turn(2)
+	faceRight()
+	faceRight()
 	while i < distance do
-		robot.forward()
+		forward()
 		i = i + 1
 	end
 	dumpInv()
 	refuel()
-	turn(0)
+	faceRight()
+	faceRight()
 	
 	if distance < length then
 		goBack(distance)
@@ -123,7 +100,7 @@ end
 function goBack()
 	local i = 0
 	while i < distance do
-		robot.forward()
+		forward()
 		i = i + 1
 	end
 end
@@ -137,5 +114,5 @@ function checkInv()
 	end
 end
 
-forward(length)
+tunnel(length)
 home()
