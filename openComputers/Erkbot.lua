@@ -90,3 +90,18 @@ function faceLeft() -- turn left
  robot.turnLeft()
  writeLocation()
 end
+
+function faceRight() -- turn right
+ if face == 0 then
+  face = 3
+ elseif face == 1 then
+  face = 0
+ elseif face == 2 then
+  face = 1
+ elseif face == 3 then
+  face = 2
+ end
+ robot.turnRight()
+ writeLocation()
+end
+
