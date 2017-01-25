@@ -45,4 +45,11 @@ function explode(div,str) -- credit: http://richard.warburton.it
    table.insert(arr,string.sub(str,pos)) -- Attach chars right of last divider
    return arr
  end
- 
+
+function writeLocation()
+   io.write(xPos .. "," .. yPos .. "," .. zPos .. "," .. face  .. "\n") 
+   local fileLocation = io.open("/home/location","w")
+   fileLocation:write(xPos .. "," .. yPos .. "," .. zPos .. "," .. face)
+   fileLocation:close()
+end
+
