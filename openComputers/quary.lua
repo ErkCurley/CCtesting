@@ -15,8 +15,8 @@ local args, options = shell.parse(...)
 local length = tonumber(args[1])
 local width = tonumber(args[2])
 
-local xHome, yHome, zHome = gps.getLocation()
-local xLast, yLast, zLast = gps.getLocation()
+local xHome, yHome, zHome = gps.getLocation() --Start location of the program. This should be where the robot goes when it has finished mining. Also the start of the quary.
+local xLast, yLast, zLast = gps.getLocation() --This is the location that the robot needs to return to after it needs to drop off goods or get more energy.
 
 --Dump inv works without problem
 function dumpInv()
