@@ -109,3 +109,24 @@ function faceAround()
   faceRight()
   faceRight()
 end
+
+function forward() -- go forward
+ robot.forward()
+ if cal == true then
+  if face == 0 then
+   zPos = zPos - 1
+  elseif face == 1 then
+   xPos = xPos - 1
+  elseif face == 2 then
+   zPos = zPos + 1
+  elseif face == 3 then
+   xPos = xPos + 1
+  else
+   io.write(face .. "\n")
+  end
+ else
+  io.write("Not Calibrated.")
+ end
+ writeLocation()
+end
+
