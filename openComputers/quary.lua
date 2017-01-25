@@ -15,6 +15,8 @@ local args, options = shell.parse(...)
 local length = tonumber(args[1])
 local width = tonumber(args[2])
 
+local xHome, yHome, zHome = gps.getLocation()
+local xLast, yLast, zLast = gps.getLocation()
 
 --Dump inv works without problem
 function dumpInv()
