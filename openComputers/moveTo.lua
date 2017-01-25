@@ -12,7 +12,7 @@ local gps = require("gps")
 
 function moveTo(x,y,z)
     gps.readLocation()
-    local xStart, yStart, zStart = getLocation()
+    local xStart, yStart, zStart = gps.getLocation()
 
     if xStart < x then
         face(3) --Face Positive X
