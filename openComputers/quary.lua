@@ -13,48 +13,8 @@ local sides = require("sides")
 local args, options = shell.parse(...)
 
 local length = tonumber(args[1])
+local width = tonumber(args[2])
 
-distance = 0
-height = 0
-facing = 0
-blocksMined = 0
-directionFacing = "North"
-
-directions = {0,0,0,0}
-
-function forward(number)
-	while distance < number do
-		checkInv()
-		robot.swing()
-		robot.forward()
-    	directions[1] = directions[1] + 1
-		dig()
-		distance = distance + 1
-	end
-end
-
---Turn Efficiency could be improved
-function turn(side)
-	if side == facing - 1 then
-		robot.turnLeft()
-    	facing = facing - 1
-	else
-		while  facing ~= side do
-			robot.turnRight()
-			facing = facing + 1
-			if facing > 3 then
-				facing = 0
-			end
-		end
-	end
-  directions[3] = facing
-end
-
---Dig Works without problem
-function dig()
-	robot.swingUp()
-	robot.swingDown()
-end
 
 --Dump inv works without problem
 function dumpInv()
@@ -83,28 +43,11 @@ end
 
 
 function home()
-	local i = 0
-	turn(2)
-	while i < distance do
-		robot.forward()
-		i = i + 1
-	end
-	dumpInv()
-	refuel()
-	turn(0)
-	
-	if distance < length then
-		goBack(distance)
-		distance = 0
-	end
+
 end
 
 function goBack()
-	local i = 0
-	while i < distance do
-		robot.forward()
-		i = i + 1
-	end
+
 end
 
 --checkInv works properly
@@ -117,5 +60,6 @@ function checkInv()
 	end
 end
 
-forward(length)
+
+
 home()
