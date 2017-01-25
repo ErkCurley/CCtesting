@@ -147,3 +147,14 @@ function back() -- go back
  end
  writeLocation()
 end
+
+function up() -- go up
+ robot.up()
+ if cal == true then
+  yPos = yPos + 1
+ else
+  io.write("Not Calibrated.")
+ end
+ writeLocation()
+end
+
