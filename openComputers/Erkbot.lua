@@ -174,3 +174,43 @@ function jump() -- perform a jump. useless? yup!
   writeLocation()
 end
 
+function moveTo(x,y,z)
+    readLocation()
+    local xStart, yStart, zStart = getLocation()
+
+    if xStart < x then
+        face(3) --Face Positive X
+        while xStart < x do
+            forward()
+        end
+    end
+    if xStart > x then
+        face(1) --Face Negative X
+        while xStart > x do
+            forward()
+        end
+    end
+    if zStart < z then
+        face(2) --Face Positive z
+        while zStart < z do
+            forward()
+        end
+    end
+    if zStart > z then
+        face(0)    --Face Negative z
+        while zStart > z do
+            forward()
+        end
+    end
+    if yStart < y then
+        while yStart < y do
+            down()
+        end
+    end
+    if yStart > y then
+        while yStart < y do
+            up()
+        end
+    end
+end
+
