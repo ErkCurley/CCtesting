@@ -1,0 +1,14 @@
+filePath = "Info"
+pipe=peripheral.wrap("right")
+ 
+local Items= pipe.getAvailableItems()
+f=fs.open(filePath,"w")
+for k,v in pairs(Items) do
+  id=v.getValue1()
+  f.write("ID: "..id.getId().."\n")
+  f.write("Unlocalized Name: "..id.getName().."\n")
+  f.write("Mod Name: "..id.getModName().."\n")
+  f.write("Meta: "..id.getData().."/"..id.getUndamaged().getData().."\n")
+  f.write("Count: ".. pipe.getItemAmount(id).."\n")
+end
+f.close()
